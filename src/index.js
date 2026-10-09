@@ -15,13 +15,15 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', version: process.env.APP_VERSION });
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
   logger.error('Unhandled error', { message: err.message });
   res.status(500).json({ error: 'Internal server error' });
 });
 
-app.listen(PORT, () => {
-  logger.info(`Orion API started on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    logger.info(`Orion API started on port ${PORT}`);
+  });
+}
 
 module.exports = app;
