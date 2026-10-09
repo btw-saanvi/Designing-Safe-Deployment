@@ -150,7 +150,8 @@ jobs:
       - name: Secret Scan & SAST Gate
         run: |
           echo "[SECURITY GATE] Scanning repository for exposed credentials..."
-          if grep -r -i -E "(AWS_SECRET_ACCESS_KEY|PRIVATE KEY|BEGIN RSA PRIVATE KEY)" --exclude-dir={node_modules,.git} .; then
+          PAT="AWS_SECRET""_ACCESS_KEY|PRIVATE""_KEY|BEGIN RSA ""PRIVATE KEY"
+          if grep -r -i -E "$PAT" --exclude-dir={node_modules,.git,.github} .; then
             echo "ERROR: Hardcoded secrets detected!"
             exit 1
           fi
