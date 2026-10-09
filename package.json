@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "jest --forceExit",
+    "test": "jest --coverage --forceExit",
     "lint": "eslint src/**/*.js",
-    "build": "echo 'Build step not configured'",
+    "build": "node -c src/index.js && echo 'Build verification passed'",
     "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
