@@ -40,6 +40,7 @@ jobs:
         with:
           name: source-files-legacy
           path: .
+          include-hidden-files: true
           retention-days: 1
 
   # Stage 2: Build & Lint
@@ -72,6 +73,7 @@ jobs:
         with:
           name: build-artifact-legacy
           path: .
+          include-hidden-files: true
           retention-days: 1
 
   # Stage 3: Test
@@ -117,6 +119,7 @@ jobs:
         with:
           name: coverage-report-legacy
           path: coverage/
+          include-hidden-files: true
           retention-days: 7
 
   # Stage 4: Security Scan
